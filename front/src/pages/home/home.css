@@ -1,0 +1,49 @@
+/* styles/home.css */
+
+/* Сетка игр */
+.home-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px; /* Отступ после сетки */
+    /* Отступ сверху теперь будет управляться элементами внутри .content-container или их обертками */
+}
+
+/* Стиль для текста ошибки на главной */
+.home-message-error {
+    /* Этот класс будет добавляться к <p className="page-description-text"> */
+    color: var(--color-accent-primary) !important;
+    text-shadow: 0 0 8px rgba(var(--color-accent-primary-rgb), 0.7);
+}
+
+/* Адаптивность для сетки игр */
+@media (max-width: 1200px) {
+    .home-games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .home-games-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .home-games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 400px) {
+    .home-games-grid {
+        grid-template-columns: 1fr;
+    }
+}

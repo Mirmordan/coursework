@@ -1,0 +1,280 @@
+/* src/pages/GamePage/GamePage.css */
+
+.game-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    color: var(--color-text-primary);
+}
+
+.game-page-loader,
+.game-page-error-message {
+    text-align: center;
+    font-size: 1.2em;
+    padding: 40px;
+    margin: 20px auto;
+    background-color: var(--color-bg-element);
+    border-radius: 8px;
+    border: 1px solid var(--color-border-primary);
+}
+.game-page-error-message {
+    color: var(--color-accent-primary);
+    text-shadow: 0 0 5px rgba(var(--color-accent-primary-rgb, 161, 63, 111), 0.7);
+}
+
+.game-details-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+    background-color: var(--color-bg-element-semi-transparent);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-secondary);
+    box-shadow: var(--shadow-form);
+}
+
+.game-cover-container {
+    flex: 1 1 300px;
+    max-width: 350px;
+    min-width: 250px;
+}
+
+.game-cover-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--color-border-primary);
+    background-color: var(--color-bg-dark-secondary);
+    display: block;
+}
+
+.game-info-container {
+    flex: 2 1 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.game-info-container h1 {
+    font-size: 2.2em;
+    color: var(--color-text-light);
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+.game-info-container .game-year {
+    font-size: 1.1em;
+    color: var(--color-text-secondary);
+    margin-left: 10px;
+}
+
+/* Стили для отображения ОБЩЕГО рейтинга игры (использует StarRating из gameCard.js) */
+.game-main-rating-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-accent-focus);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+/* Стили для StarRating (из gameCard.css) применяются автоматически,
+   но можно настроить размер для этого контекста */
+.game-main-rating-display .star-display {
+    font-size: 1.2em;
+}
+.game-main-rating-display .no-rating { /* Класс из StarRating компонента */
+    font-size: 0.9em;
+    font-weight: normal;
+    color: var(--color-text-secondary);
+}
+.game-main-rating-display .rating-value { /* Числовое значение */
+    /* Размер уже унаследован от .game-main-rating-display */
+}
+
+
+.game-info-item {
+    font-size: 1em;
+    line-height: 1.5;
+}
+.game-info-item strong {
+    color: var(--color-text-secondary);
+    margin-right: 8px;
+    font-weight: 600;
+}
+.game-info-item span, .game-info-item a {
+    color: var(--color-text-primary);
+}
+.game-info-item a:hover {
+    color: var(--color-text-link);
+    text-decoration: underline;
+}
+
+.game-description {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--color-bg-element);
+    border-radius: 6px;
+    border: 1px solid var(--color-border-primary);
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    font-size: 0.95em;
+}
+
+.reviews-section {
+    margin-top: 30px;
+}
+.reviews-section h2 {
+    font-size: 1.8em;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border-secondary);
+    padding-bottom: 10px;
+}
+
+.my-review-display {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--color-bg-element-highlight, var(--color-bg-element));
+    border-radius: 8px;
+    border: 1px solid var(--color-border-secondary);
+}
+
+.my-review-display h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--color-text-light);
+    font-size: 1.2em;
+}
+
+.my-review-display .my-review-item-wrapper {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.my-review-display .my-review-item-wrapper .review-item {
+    margin-bottom: 0;
+    box-shadow: none;
+}
+
+.review-action-buttons button {
+    margin-bottom: 20px;
+}
+
+.auth-form-wrapper {
+    background-color: var(--color-bg-element);
+    border: 1px solid var(--color-border-primary);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow-form);
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.auth-input-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+.auth-input-group label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    font-size: 0.9em;
+}
+.auth-input,
+textarea.auth-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border-secondary);
+    border-radius: 5px;
+    background-color: var(--color-bg-input);
+    color: var(--color-text-primary);
+    font-size: 1em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.auth-input:focus,
+textarea.auth-input:focus {
+    outline: none;
+    border-color: var(--color-accent-focus);
+    box-shadow: 0 0 0 2px rgba(var(--color-accent-primary-rgb, 161, 63, 111), 0.3);
+}
+
+.auth-message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    text-align: center;
+    display: none;
+}
+.auth-message.visible {
+    display: block;
+}
+.auth-error-message {
+    background-color: rgba(var(--color-accent-error-rgb, 220, 53, 69), 0.15);
+    color: var(--color-accent-error);
+    border: 1px solid rgba(var(--color-accent-error-rgb, 220, 53, 69), 0.3);
+}
+.auth-success-message {
+    background-color: rgba(var(--color-accent-success-rgb, 40, 167, 69), 0.15);
+    color: var(--color-accent-success);
+    border: 1px solid rgba(var(--color-accent-success-rgb, 40, 167, 69), 0.3);
+}
+
+.auth-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--color-text-button);
+    background-color: var(--color-accent-primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+.auth-button:hover {
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 2px 8px rgba(var(--color-accent-primary-rgb, 161, 63, 111), 0.3);
+}
+.auth-button:disabled {
+    background-color: var(--color-bg-disabled);
+    color: var(--color-text-disabled);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.reviews-list {
+    list-style: none;
+    padding: 0;
+}
+.no-reviews-message {
+    color: var(--color-text-secondary);
+    padding: 20px;
+    text-align: center;
+    background-color: var(--color-bg-element);
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .game-details-layout {
+        flex-direction: column;
+    }
+    .game-cover-container {
+        max-width: 100%;
+        margin: 0 auto 20px auto;
+    }
+    .game-info-container h1 {
+        font-size: 1.8em;
+    }
+    .game-main-rating-display {
+        font-size: 1em;
+    }
+    .game-main-rating-display .star-display {
+        font-size: 1em;
+    }
+}

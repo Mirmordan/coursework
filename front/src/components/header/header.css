@@ -1,0 +1,383 @@
+/* src/components/Header/header.css */
+/* No changes needed to CSS variables */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-bg-element-semi-transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-header);
+  border-bottom: 1px solid var(--color-border-secondary);
+  height: var(--header-height);
+  padding: 0 30px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family-base);
+}
+
+.header-logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  transition: transform 0.2s ease-in-out;
+}
+.header-logo:hover img {
+  transform: scale(1.05);
+}
+
+.header-navigation {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center; /* Center search within its available space */
+  align-items: center;
+  padding: 0 20px; /* Spacing around search */
+  position: relative; /* Needed for dropdown positioning */
+  max-width: 650px; /* Limit width of the central navigation/search area */
+  margin: 0 auto; /* Help centering if flex-grow doesn't fill space */
+}
+
+.header-search-form {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-element);
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid var(--color-border-primary);
+  transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  position: relative;
+}
+.header-search-form:focus-within {
+  border-color: var(--color-accent-focus);
+  box-shadow: 0 0 0 0.2rem var(--color-border-focus-glow);
+}
+
+.header-search-input {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background-color: transparent;
+  border-radius: 8px 0 0 8px;
+}
+.header-search-input::placeholder {
+  color: var(--color-text-placeholder);
+  opacity: 1;
+}
+
+.header-search-button {
+  background-color: transparent;
+  border: none;
+  color: var(--color-text-link);
+  padding: 10px 15px;
+  cursor: pointer;
+  /* font-size controlled by parent/icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 8px 8px 0;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+/* Set icon size within the button */
+.header-search-button svg {
+    font-size: 18px; /* Adjust size as needed */
+}
+.header-search-button:hover:not(:disabled) {
+  color: var(--color-text-light);
+}
+.header-search-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.header-search-dropdown {
+  position: absolute;
+  top: calc(100% + 5px); /* Position below the search bar */
+  left: 0; /* Align with the left of the search form */
+  right: 0; /* Align with the right of the search form */
+  width: 100%; /* Take full width of the parent (.header-navigation) */
+  background-color: var(--color-bg-element);
+  border: 1px solid var(--color-border-primary);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: var(--shadow-form);
+  list-style: none;
+  padding: 0;
+  z-index: 999; /* Below header actions */
+  max-height: 400px; /* Limit dropdown height */
+  overflow-y: auto; /* Add scroll if needed */
+}
+
+.search-dropdown-item {
+  padding: 0;
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+.search-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.search-dropdown-item a {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  min-height: 50px;
+  overflow: hidden;
+}
+.search-dropdown-item a:hover {
+  background-color: var(--color-accent-secondary);
+  color: var(--color-text-light);
+}
+/* Ensure hovered items have contrast */
+.search-dropdown-item a:hover .search-dropdown-item-name,
+.search-dropdown-item a:hover .search-dropdown-item-year {
+  color: var(--color-text-light);
+}
+
+.search-dropdown-item-image {
+  width: 32px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 4px;
+  background-color: var(--color-bg-dark-secondary); /* Placeholder bg */
+  flex-shrink: 0;
+  display: block;
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  order: 1;
+}
+.search-dropdown-item-image.has-error {
+   border: 1px dashed var(--color-border-primary);
+}
+
+.search-dropdown-item-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  min-width: 0;
+  order: 2;
+}
+
+.search-dropdown-item-title-line {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+}
+
+.search-dropdown-item-year {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-left: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  order: 2;
+}
+
+.search-dropdown-item-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  min-width: 0;
+  order: 1;
+}
+
+.search-dropdown-item.loading,
+.search-dropdown-item.no-results {
+  padding: 10px 15px;
+  color: var(--color-text-secondary);
+  text-align: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  display: flex; /* Use flex to align spinner and text */
+  align-items: center;
+  justify-content: center;
+}
+/* Style loading spinner icon */
+.search-dropdown-item.loading .spinner-icon {
+    margin-right: 8px;
+    /* Add animation if the icon doesn't spin by default */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1001; /* Ensure actions are above dropdown */
+  gap: 8px; /* Spacing between action items */
+}
+
+/* Generic style for action links (Login, Admin Panel) */
+.header-action-link {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  width: 42px; /* Consistent size */
+  height: 42px; /* Consistent size */
+  box-sizing: border-box;
+}
+/* Set icon size within the link */
+.header-action-link svg {
+    font-size: 26px; /* Adjust icon size */
+}
+.header-action-link:hover {
+  color: var(--color-text-link);
+  transform: scale(1.1);
+  background-color: rgba(var(--color-accent-primary-rgb, 161, 63, 111), 0.15);
+}
+
+/* Generic style for action buttons (Logout) */
+.header-action-button {
+  color: var(--color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  width: 42px; /* Consistent size */
+  height: 42px; /* Consistent size */
+  box-sizing: border-box;
+}
+/* Set icon size within the button */
+.header-action-button svg {
+    font-size: 26px; /* Adjust icon size */
+}
+.header-action-button:hover:not(:disabled) {
+  color: var(--color-text-link);
+  transform: scale(1.1);
+  background-color: rgba(var(--color-accent-primary-rgb, 161, 63, 111), 0.15);
+}
+.header-action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: transparent;
+  transform: none;
+}
+
+/* Specific class names are less needed now, but kept for potential overrides */
+.header-login-link { /* Style for Login icon if needed */ }
+.header-admin-link { /* Style for Admin icon if needed */ }
+.header-logout-button { /* Style for Logout button if needed */ }
+
+
+.header-loading-indicator {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Space between icon and text */
+}
+/* Style loading spinner icon in header */
+.header-loading-indicator .spinner-icon {
+    font-size: 18px; /* Size for header spinner */
+    /* Add animation if the icon doesn't spin by default */
+    animation: spin 1s linear infinite;
+}
+
+
+/* --- Адаптивность --- */
+@media (max-width: 768px) {
+  .app-header {
+      padding: 0 15px;
+      height: var(--header-height-mobile);
+  }
+  .header-navigation {
+      padding: 0 10px;
+      max-width: none;
+  }
+  .header-search-input {
+      font-size: 14px;
+      padding: 8px 12px;
+  }
+  .header-search-button { padding: 8px 12px; }
+  .header-search-button svg { font-size: 16px; } /* Adjust icon size */
+
+  .header-logo img { height: 35px; }
+
+  /* Adjust action items */
+  .header-actions { gap: 5px; }
+  .header-action-link, .header-action-button {
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+  }
+  .header-action-link svg, .header-action-button svg {
+    font-size: 22px; /* Adjust icon size */
+  }
+
+  /* Adjust dropdown items */
+  .search-dropdown-item a { padding: 6px 10px; min-height: 44px; }
+  .search-dropdown-item-image { width: 28px; height: 35px; margin-right: 8px; }
+  .search-dropdown-item-year { margin-left: 5px; font-size: 0.75rem; }
+  .search-dropdown-item-name { font-size: 0.85rem; }
+  .search-dropdown-item.loading,
+  .search-dropdown-item.no-results { font-size: 0.85rem; }
+  .search-dropdown-item.loading .spinner-icon { font-size: 16px; } /* Adjust spinner size */
+}
+
+@media (max-width: 480px) {
+  .app-header {
+      padding: 0 10px;
+  }
+  .header-navigation {
+      padding: 0 5px;
+  }
+  .header-search-input {
+      font-size: 13px;
+      padding: 7px 10px;
+  }
+  .header-search-button { padding: 7px 10px; }
+  .header-search-button svg { font-size: 15px; } /* Adjust icon size */
+
+   /* Adjust action items */
+   .header-actions { gap: 3px; }
+   .header-action-link, .header-action-button {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+  }
+   .header-action-link svg, .header-action-button svg {
+    font-size: 20px; /* Adjust icon size */
+  }
+
+  /* Adjust dropdown items */
+  .search-dropdown-item a { padding: 5px 8px; min-height: 40px;}
+  .search-dropdown-item-image { width: 24px; height: 30px; margin-right: 6px; }
+  .search-dropdown-item-year { margin-left: 4px; }
+  .search-dropdown-item-name { font-size: 0.8rem; }
+  .search-dropdown-item.loading .spinner-icon { font-size: 14px; } /* Adjust spinner size */
+
+}
