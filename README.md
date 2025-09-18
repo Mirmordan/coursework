@@ -167,12 +167,12 @@ API запросы идут по адресу `domain_name/api/` <br>
         -   `status` (string: "active", "blocked")
     -   Ответ:
         -   `message` (string)
-Для запуска необходимо установить набор утилит, который обеспечивает переносимость и работу приложения.
-Установить Docker
-	sudo apt install curl -y
-	sudo curl -fsSL https://get.docker.com | sh
+<br/>Для запуска необходимо установить набор утилит, который обеспечивает переносимость и работу приложения.
+<br/>Установить Docker
+- sudo apt install curl -y
+- sudo curl -fsSL https://get.docker.com | sh
 Установить Docker compose
-  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-	sudo chmod +x /usr/local/bin/docker-compose
+- sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+- sudo chmod +x /usr/local/bin/docker-compose
 Запустить через Docker Compose
-	docker-compose up --build -d
+- docker-compose up --build -d
